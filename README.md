@@ -1,59 +1,50 @@
 ---
-title: AI Music Studio
-emoji: 🎶
-colorFrom: purple
+title: AI Classifier Trainer
+emoji: 🛠️🤖
+colorFrom: green
 colorTo: blue
 sdk: gradio
-sdk_version: 4.31.5
+sdk_version: 4.1.0
 app_file: app.py
 pinned: false
 ---
 
-Gün 26: AI Music Studio - Demucs ile Enstrüman Ayırma 🎶
+# 🤖 Otomatik Görüntü Sınıflandırıcı Eğitmeni 🛠️
 
-Bu proje, bir ses dosyasını alıp demucs kütüphanesini kullanarak onu temel enstrüman katmanlarına (vokal, davul, bas ve diğerleri) ayıran basit ve güçlü bir Gradio web uygulamasıdır.
+Bu proje, sıfırdan bir görüntü sınıflandırma modelini eğitmek için gereken tüm adımları otomatikleştiren bir Gradio uygulamasıdır. Artık manuel olarak veri toplamanıza gerek yok; sadece neyi sınıflandırmak istediğinizi yazın, gerisini yapay zeka halletsin!
 
-Uygulama, transformers pipeline'ı yerine doğrudan demucs komut satırı aracını çağırarak daha stabil ve güvenilir bir ayırma işlemi sunar.
-🚀 Canlı Demo
+Bu uygulama ile istediğiniz iki kategori arasında ayrım yapabilen bir modeli dakikalar içinde oluşturup test edebilirsiniz.
 
-Uygulamayı denemek için aşağıdaki Hugging Face Spaces linkini ziyaret edebilirsiniz:
+## ✨ Temel Özellikler
 
-https://huggingface.co/spaces/tiheli/Day-26-AI-Music-Studio
-✨ Özellikler
+* **Otomatik Veri Toplama:** Kullanıcının girdiği anahtar kelimelerle web'den otomatik olarak resim toplar (web scraping).
+* **Sıfırdan Eğitim:** Toplanan verilerle, PyTorch kullanılarak bir Evrişimli Sinir Ağı (CNN) modeli sıfırdan eğitilir.
+* **İnteraktif Test:** Eğitilen model, yeni resimlerle anında test edilebilir ve başarı oranı görülebilir.
+* **Uçtan Uca Yapay Zeka Akışı:** Veri toplama, eğitim ve tahmin (inference) adımlarını tek bir arayüzde birleştirir.
+* **Anlık Geri Bildirim ve Açıklamalar:** **Veri toplama ve eğitim süreçleri sırasında kullanıcıya anlık durum güncellemeleri sunar ve her adımda kullanılan teknolojiler hakkında bilgilendirici açıklamalar içerir.**
 
-    🎼 Stabil Enstrüman Ayırma: Yüklediğiniz bir ses dosyasını vokal, davul, bas ve diğer enstrümanlar olmak üzere dört ana katmana ayırır.
+## 🚀 Kullanım Kılavuzu
 
-    Doğrudan Demucs Entegrasyonu: Arka planda subprocess kullanarak demucs kütüphanesini çalıştırır ve en iyi sonuçları hedefler.
+Uygulama üç basit adımdan oluşur:
 
-    Basit Arayüz: Tek yapmanız gereken ses dosyanızı yüklemek ve sonuçları dinlemek!
+### **Adım 1: Veri Topla**
+Uygulamanın ilk sekmesinde, sınıflandırmak istediğiniz iki kategori için arama terimleri girin (örneğin, `Isparta Gülü` ve `Lavanta Tarlası`). İndirmek istediğiniz resim sayısını seçin ve **"Veri Setini Oluştur"** butonuna tıklayın. Sistem, internetten resimleri toplayıp `train` ve `val` olarak ayıracaktır.
 
-🛠️ Kullanılan Teknolojiler
+### **Adım 2: Modeli Eğit**
+Verileriniz hazır olduğunda bu sekmeye geçin. **"Eğitimi Başlat"** butonuna tıklayarak PyTorch modelinin eğitim sürecini başlatın. Bu işlem, sunucu yoğunluğuna göre birkaç dakika sürebilir.
 
-    Framework: Gradio
+### **Adım 3: Tahmin Yap**
+Eğitim tamamlandıktan sonra, bu son sekmeye geçerek kendi modelinizi test edebilirsiniz. Bilgisayarınızdan daha önce modelin görmediği bir resim yükleyin ve **"Tahmin Et"** butonuna basın. Modelin, yüklediğiniz resmin hangi sınıfa ait olduğunu hangi olasılıkla tahmin ettiğini göreceksiniz.
 
-    Ayırma Kütüphanesi: Demucs
+**İpucu: Her adımda neler olduğunu daha detaylı öğrenmek için sekmelerin altındaki "ℹ️ Bu Adımda Ne Oluyor?" başlığına tıklayarak ilgili açıklamaları okuyabilirsiniz.**
 
-    Ana Kütüphaneler: subprocess, tempfile (Geçici dosya yönetimi için)
+## 💻 Kullanılan Teknolojiler
 
-💻 Yerel Ortamda Çalıştırma
+* **Arayüz:** `Gradio`
+* **Derin Öğrenme:** `PyTorch` & `torchvision`
+* **Web Scraping:** `ddgs` (duckduckgo-search)
+* **Veri İşleme:** `Pillow`, `NumPy`
 
-Projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımları izleyebilirsiniz.
+---
 
-    Repoyu Klonlayın:
-
-    git clone [https://github.com/SuleymanToklu/Day26-AI-Music-Studio.git](https://github.com/SuleymanToklu/Day26-AI-Music-Studio.git)
-    cd Day26-AI-Music-Studio
-
-    Gerekli Paketleri Yükleyin:
-    demucs kütüphanesinin kendisi ana bağımlılıktır.
-
-    pip install -r requirements.txt
-
-    Not: requirements.txt dosyanızın gradio ve demucs paketlerini içerdiğinden emin olun. Demucs'un kurulumu için resmi GitHub sayfasını ziyaret edebilirsiniz.
-
-    Uygulamayı Başlatın:
-
-    python app.py
-
-    Tarayıcıda Açın:
-    Terminalde belirtilen yerel adresi (genellikle http://127.0.0.1:7860) tarayıcınızda açın.
+Bu uygulama, kişisel bir **"AI Maratonu"**nun 27. gün projesi olarak Süleyman Toklu tarafından geliştirilmiştir.

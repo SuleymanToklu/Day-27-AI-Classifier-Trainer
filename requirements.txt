@@ -1,3 +1,7 @@
-gradio
-demucs
 torch
+torchvision
+gradio
+numpy
+Pillow
+ddgs
+requests
