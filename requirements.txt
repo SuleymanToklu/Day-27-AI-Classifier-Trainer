@@ -1,7 +1,3 @@
-torch
-torchvision
 gradio
-numpy
-Pillow
-ddgs
-requests
+demucs
+torch
